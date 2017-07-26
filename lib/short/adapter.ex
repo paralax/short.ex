@@ -34,4 +34,18 @@ defmodule Short.Adapter do
 
   @callback get(code) :: {:ok, url} | {:error, error}
   @callback create(url, code | nil) :: {:ok, shortened_url} | {:error, error}
+
+  @doc false
+  # Trying to have the application fail to compile instead of raising during the
+  # application start like in commit `#f9d4e5d`.
+  defmacro __using__(_) do
+    quote do
+      adapter = Application.get_env(:short, :adapter) ||
+        raise ArgumentError, "missing :adapter configuration in config :short"
+
+      @adapter adapter
+
+      def adapter, do: @adapter
+    end
+  end
 end

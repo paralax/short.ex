@@ -7,9 +7,9 @@ defmodule Short.Application do
 
   def start(_type, _args) do
     # TODO: Is this the best place to do this?
-    if adapter_missing_in_config?() do
-      raise ArgumentError, "missing :adapter in Short application configuration."
-    end
+    # if adapter_missing_in_config?() do
+    #   raise ArgumentError, "missing :adapter in Short application configuration."
+    # end
 
     # TODO: Is there a better way to do this? Also there should be a way to
     # configure this, when using a custom adapter.

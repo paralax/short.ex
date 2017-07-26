@@ -7,6 +7,7 @@ defmodule Short.Router do
   """
 
   use Plug.Router
+  use Short.Adapter
 
   plug Plug.Parsers, parsers: [:multipart], pass: ["*/*"]
   plug :match
@@ -34,7 +35,7 @@ defmodule Short.Router do
 
   ## Helpers
 
-  defp adapter, do: Application.get_env(:short, :adapter)
+  # defp adapter, do: Application.get_env(:short, :adapter)
 
   defp redirect(conn, to) do
     conn
